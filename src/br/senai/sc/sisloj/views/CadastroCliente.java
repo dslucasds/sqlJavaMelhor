@@ -8,6 +8,8 @@ package br.senai.sc.sisloj.views;
 import br.senai.sc.sisloj.dao.ClienteDao;
 import br.senai.sc.sisloj.modelo.Cliente;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,12 +20,12 @@ public class CadastroCliente extends javax.swing.JPanel {
 
     public CadastroCliente() {
         initComponents();
-        String jNomeCliente = "";
-        String jEnderecoCliente = "";
-        String jBairroCliente = "";
-        String jCompletemento = "";      
-        String jCepCliente = "";
-        String jCelularCliente = "";
+        jNomeCliente.setText(" ");
+        jEnderecoCliente.setText(" ");
+        jBairroCliente.setText(" ");
+        jCompletemento.setText(" ");
+        jCepCliente.setText(" ");
+        jCelularCliente.setText(" ");
     }
 
     @SuppressWarnings("unchecked")
@@ -224,10 +226,17 @@ public class CadastroCliente extends javax.swing.JPanel {
         try{
         cliDao.inserir(cli);
         JOptionPane.showMessageDialog(null, "cadastro efetuado com sucesso");
+        
         }catch(SQLException ex){
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "erro ao cadastrar");
         }
-        
+        jNomeCliente.setText(" ");
+        jEnderecoCliente.setText(" ");
+        jBairroCliente.setText(" ");
+        jCompletemento.setText(" ");
+        jCepCliente.setText("");
+        jCelularCliente.setText("");
         
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
